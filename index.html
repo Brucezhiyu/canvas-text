@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="canvas" width="100" height="100"> </canvas>
+    <canvas id="canvas" width="1336" height="618"> </canvas>
     <script>
         let canvas=document.getElementById("canvas");
         canvas.width=document.documentElement.clientWidth;
@@ -20,27 +20,22 @@
         ctx.lineCap="round";
         // 连接线与线之间的缝隙
         
-        let last; 
+        let last =[]; 
         let painting = false;
-        function drawLine(x1, y1, x2, y2) {
-             ctx.beginPath();
-             ctx.moveTo(x1, y1);
-             ctx.lineTo(x2, y2);
-             ctx.stroke 
 
-        }
-
+      
+        console.log(1)
         var isTouchDevice = 'ontouchstart' in  document.documentElement;
         if(isTouchDevice) {
-                    
+                   
                 canvas.ontouchstart = (e) => {
                 let x = e.touches[0].clientX;
                 let y = e.touches[0].clientY;
                 last = [x, y]; 
                 }
-                console.log(1)
+                console.log(2)
                 canvas.ontouchmove = (e) => {
-                console.log(2)   
+                   
                 let x =e.touches[0].clientX;
                 let y =e.touches[0].clientY;
 
@@ -49,6 +44,7 @@
 
                 last = [x, y];          
             }//移动端设置触碰
+          
         }else {
             canvas.onmousedown = (e) => {
                 painting = true;
@@ -56,9 +52,10 @@
     
               
             }
+      
             canvas.onmousemove = (e) => {
                 if (painting === true) {
-               
+                
                     drawLine( last[0],last[1],e.clientX, e.clientY);
                 
                     last=[e.clientX,e.clientY];
@@ -68,9 +65,16 @@
             canvas.onmouseup = () => {
                 painting = false;
             }
+            console.log(3)
 
         }  
-        
+        function drawLine(x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+           ctx.lineTo(x2, y2);
+           ctx.stroke();
+
+      }        
     </script>
     
 </body>
