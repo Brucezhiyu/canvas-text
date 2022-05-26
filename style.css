@@ -7,8 +7,9 @@
 #canvas {
   display: block;
 }
-h1{
+.div{
   top:0;
   left:0;
   position:fixed;
+  font-size:30px;
 }
